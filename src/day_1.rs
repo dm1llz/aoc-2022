@@ -20,15 +20,11 @@ fn get_calories_as_vec(calories: &str) -> Vec<usize> {
     let mut calories_as_usize_vec = Vec::new();
 
     for cal in calories.split("\n") {
-        if cal == "" {
+        if cal.is_empty() {
             calories_as_usize_vec.push(current_calories);
             current_calories = 0;
         } else {
-            let cal_as_usize = match cal.parse::<usize>() {
-                Err(_) => 0,
-                Ok(val) => val
-            };
-            current_calories = current_calories + cal_as_usize;
+            current_calories += cal.parse::<usize>().unwrap_or(0);
         }
     };
 
