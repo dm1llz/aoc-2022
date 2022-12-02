@@ -9,14 +9,16 @@ pub fn get_first_solution() {
 fn get_most_calories() -> usize {
     let calories = read_file();
 
-    let mut most_calories: usize = 0;
-    let mut current_calories: usize = 0;
+    get_calories(&calories)[0]
+}
+
+fn get_calories(calories: &str) -> Vec<usize> {
+    let mut current_calories = 0;
+    let mut calories_as_usize = Vec::new();
 
     for cal in calories.split("\n") {
         if cal == "" {
-            if current_calories > most_calories {
-                most_calories = current_calories;
-            }
+            calories_as_usize.push(current_calories);
             current_calories = 0;
         } else {
             let cal_as_usize = match cal.parse::<usize>() {
@@ -25,9 +27,10 @@ fn get_most_calories() -> usize {
             };
             current_calories = current_calories + cal_as_usize;
         }
-    }
+    };
 
-    most_calories
+    calories_as_usize.sort_by(|a, b| b.cmp(a));
+    calories_as_usize
 }
 
 fn read_file() -> String {
