@@ -8,5 +8,6 @@ fn main() {
     println!("--------------------------------------");
     println!("Day 2");
     day_2::get_first_solution();
+    day_2::get_second_solution();
     println!("--------------------------------------");
 }
