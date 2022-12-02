@@ -33,7 +33,7 @@ fn get_calories_as_vec(calories: &str) -> Vec<usize> {
 }
 
 fn read_file() -> String {
-    let path = Path::new("src/day_1/input.txt");
+    let path = Path::new("src/input/day1.txt");
     let mut file = match File::open(&path) {
         Err(why) => panic!("Couldn't open {}: {}", path.display(), why),
         Ok(file) => file,
