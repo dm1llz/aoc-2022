@@ -1,5 +1,5 @@
 use crate::read_file;
-use std::collections::HashMap;
+use std::collections::HashSet;
 
 pub fn get_first_solution() {
     let items = read_file("src/input/day3.txt");
@@ -44,31 +44,27 @@ pub fn get_second_solution() {
 }
 
 fn get_common_char(rucksacks: Vec<&str>) -> Option<char> {
-    let mut common_chars = HashMap::new();
-    let mut parsed_chars = HashMap::new();
-
-    for rucksack in rucksacks.iter() {
-        for letter in rucksack.chars() {
-            match parsed_chars.contains_key(&letter) {
-                true => (),
-                false => {
-                    *common_chars.entry(letter).or_insert(0) += 1;
-
-                    parsed_chars.insert(letter, ());
-                }
-            };
-        }
-
-        parsed_chars = HashMap::new();
+    if rucksacks.is_empty() {
+        return None;
     }
 
-    for (key, value) in common_chars {
-        if value == rucksacks.len() {
-            return Some(key);
+    let mut common_chars: HashSet<char> = HashSet::from_iter(rucksacks[0].chars());
+
+    for rucksack in rucksacks.iter().skip(1) {
+        let rucksack_chars = HashSet::from_iter(rucksack.chars());
+        let mut intersects = HashSet::new();
+
+        for intersect in common_chars.intersection(&rucksack_chars) {
+            intersects.insert(*intersect);
         }
+
+        common_chars = intersects;
     }
 
-    None
+    match common_chars.len() {
+        1 => common_chars.iter().next().copied(),
+        _ => None
+    }
 }
 
 fn get_value_from_char(letter: char) -> usize {
