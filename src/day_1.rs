@@ -1,15 +1,11 @@
-use std::fs::File;
-use std::io::prelude::*;
-use std::path::Path;
-
 pub fn get_first_solution() {
-    let calories = read_file();
+    let calories = crate::read_file("src/input/day1.txt");
 
     println!("Most calories: {}", get_calories_as_vec(&calories)[0]);
 }
 
 pub fn get_second_solution() {
-    let calories = read_file();
+    let calories = crate::read_file("src/input/day1.txt");
     let calories_vec = get_calories_as_vec(&calories);
 
     println!(
@@ -33,18 +29,4 @@ fn get_calories_as_vec(calories: &str) -> Vec<usize> {
 
     calories_as_usize_vec.sort_by(|a, b| b.cmp(a));
     calories_as_usize_vec
-}
-
-fn read_file() -> String {
-    let path = Path::new("src/input/day1.txt");
-    let mut file = match File::open(path) {
-        Err(why) => panic!("Couldn't open {}: {}", path.display(), why),
-        Ok(file) => file,
-    };
-
-    let mut contents = String::new();
-    match file.read_to_string(&mut contents) {
-        Err(why) => panic!("Couldn't read {}: {}", path.display(), why),
-        _ => contents,
-    }
 }

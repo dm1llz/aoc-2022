@@ -1,16 +1,12 @@
-use std::fs::File;
-use std::io::prelude::*;
-use std::path::Path;
-
 pub fn get_first_solution() {
-    let guide = read_file();
+    let guide = crate::read_file("src/input/day2.txt");
     let moves: Vec<&str> = guide.split('\n').collect();
 
     println!("Total score: {}", calc_scores(moves, calc_score));
 }
 
 pub fn get_second_solution() {
-    let guide = read_file();
+    let guide = crate::read_file("src/input/day2.txt");
     let moves: Vec<&str> = guide.split('\n').collect();
 
     println!("Total score: {}", calc_scores(moves, find_move_then_calc));
@@ -83,18 +79,4 @@ fn find_move_then_calc(their_move: char, result: char) -> usize {
     };
 
     calc_score(their_move, my_move)
-}
-
-fn read_file() -> String {
-    let path = Path::new("src/input/day2.txt");
-    let mut file = match File::open(path) {
-        Err(why) => panic!("Couldn't open {}: {}", path.display(), why),
-        Ok(file) => file,
-    };
-
-    let mut contents = String::new();
-    match file.read_to_string(&mut contents) {
-        Err(why) => panic!("Couldn't read {}: {}", path.display(), why),
-        _ => contents,
-    }
 }
