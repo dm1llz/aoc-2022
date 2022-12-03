@@ -4,43 +4,35 @@ use std::collections::HashSet;
 pub fn get_first_solution() {
     let items = read_file("src/input/day3.txt");
 
-    println!(
-        "Priorities: {}",
-        items
-            .split('\n')
-            .map(|i| {
-                let middle = i.len() / 2;
-                let common_char = get_common_char(vec![&i[0..middle], &i[middle..]]);
+    let total: usize = items
+        .split('\n')
+        .map(|i| {
+            let middle = i.len() / 2;
 
-                match common_char {
-                    Some(x) => get_value_from_char(x),
-                    _ => 0,
-                }
-            })
-            .sum::<usize>()
-    );
+            match get_common_char(vec![&i[0..middle], &i[middle..]]) {
+                Some(c) => get_value_from_char(c),
+                None => 0,
+            }
+        })
+        .sum();
+
+    println!("Priorities: {}", total);
 }
 
 pub fn get_second_solution() {
     let items = read_file("src/input/day3.txt");
-    let mut running_total = 0;
-    let mut process_items = Vec::new();
 
-    for item in items.split('\n') {
-        if process_items.len() == 3 {
-            let common_char = get_common_char(process_items.to_vec());
-            running_total += match common_char {
-                Some(x) => get_value_from_char(x),
-                _ => 0,
-            };
+    let total: usize = items
+        .split('\n')
+        .collect::<Vec<&str>>()
+        .chunks(3)
+        .map(|c| match get_common_char(c.to_vec()) {
+            Some(c) => get_value_from_char(c),
+            None => 0,
+        })
+        .sum();
 
-            process_items.clear();
-        }
-
-        process_items.push(item);
-    }
-
-    println!("Group Priorities: {}", running_total);
+    println!("Group Priorities: {}", total);
 }
 
 fn get_common_char(rucksacks: Vec<&str>) -> Option<char> {
@@ -63,7 +55,7 @@ fn get_common_char(rucksacks: Vec<&str>) -> Option<char> {
 
     match common_chars.len() {
         1 => common_chars.iter().next().copied(),
-        _ => None
+        _ => None,
     }
 }
 
