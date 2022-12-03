@@ -9,7 +9,8 @@ pub fn get_first_solution() {
         items
             .split('\n')
             .map(|i| {
-                let common_char = get_common_char(i);
+                let middle = i.len() / 2;
+                let common_char = get_common_char(vec![&i[0..middle], &i[middle..]]);
 
                 match common_char {
                     Some(x) => get_value_from_char(x),
@@ -20,18 +21,50 @@ pub fn get_first_solution() {
     );
 }
 
-fn get_common_char(rucksack: &str) -> Option<char> {
-    let middle = rucksack.len() / 2;
-    let mut compartment_1 = HashMap::new();
+pub fn get_second_solution() {
+    let items = read_file("src/input/day3.txt");
+    let mut running_total = 0;
+    let mut process_items = Vec::new();
 
-    for (i, letter) in rucksack.chars().enumerate() {
-        if i < middle {
-            compartment_1.insert(letter, true);
-        } else {
-            match compartment_1.contains_key(&letter) {
-                true => return Some(letter),
-                false => (),
+    for item in items.split('\n') {
+        if process_items.len() == 3 {
+            let common_char = get_common_char(process_items.to_vec());
+            running_total += match common_char {
+                Some(x) => get_value_from_char(x),
+                _ => 0,
             };
+
+            process_items.clear();
+        }
+
+        process_items.push(item);
+    }
+
+    println!("Group Priorities: {}", running_total);
+}
+
+fn get_common_char(rucksacks: Vec<&str>) -> Option<char> {
+    let mut common_chars = HashMap::new();
+    let mut parsed_chars = HashMap::new();
+
+    for rucksack in rucksacks.iter() {
+        for letter in rucksack.chars() {
+            match parsed_chars.contains_key(&letter) {
+                true => (),
+                false => {
+                    *common_chars.entry(letter).or_insert(0) += 1;
+
+                    parsed_chars.insert(letter, ());
+                }
+            };
+        }
+
+        parsed_chars = HashMap::new();
+    }
+
+    for (key, value) in common_chars {
+        if value == rucksacks.len() {
+            return Some(key);
         }
     }
 
