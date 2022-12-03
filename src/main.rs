@@ -22,7 +22,7 @@ fn main() {
     println!("--------------------------------------");
 }
 
-pub fn read_file(path: &str) -> Vec<&str> {
+pub fn read_file(path: &str) -> String {
     let path = Path::new(path);
     let mut file = match File::open(path) {
         Err(why) => panic!("Couldn't open {}: {}", path.display(), why),
@@ -32,6 +32,6 @@ pub fn read_file(path: &str) -> Vec<&str> {
     let mut contents = String::new();
     match file.read_to_string(&mut contents) {
         Err(why) => panic!("Couldn't read {}: {}", path.display(), why),
-        _ => contents.split('\n').collect(),
+        _ => contents,
     }
 }

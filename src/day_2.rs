@@ -1,11 +1,13 @@
 pub fn get_first_solution() {
-    let moves = crate::read_file("src/input/day2.txt");
+    let guide = crate::read_file("src/input/day2.txt");
+    let moves: Vec<&str> = guide.split('\n').collect();
 
     println!("Total score: {}", calc_scores(moves, calc_score));
 }
 
 pub fn get_second_solution() {
-    let moves = crate::read_file("src/input/day2.txt");
+    let guide = crate::read_file("src/input/day2.txt");
+    let moves: Vec<&str> = guide.split('\n').collect();
 
     println!("Total score: {}", calc_scores(moves, find_move_then_calc));
 }
