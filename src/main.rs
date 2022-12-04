@@ -25,6 +25,7 @@ fn main() {
 
     println!("Day 4");
     day_4::get_first_solution();
+    day_4::get_second_solution();
     println!("--------------------------------------");
 }
 
