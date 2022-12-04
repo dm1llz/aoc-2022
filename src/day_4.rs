@@ -6,22 +6,14 @@ pub fn get_first_solution() {
     let overlaps: usize = ids
         .split('\n')
         .map(|id| {
-            let (mut pair_1_start, mut pair_1_end) = (-1, -1);
-            let mut is_overlap = false;
-
-            for (i, pair) in id.split(',').enumerate() {
-                if i == 0 {
-                    let (start, end) = get_pair_start_and_end(pair);
-
-                    pair_1_start = start;
-                    pair_1_end = end;
-                } else {
-                    let (start, end) = get_pair_start_and_end(pair);
-
-                    is_overlap = ((pair_1_start <= start && pair_1_end >= end)
-                        || (pair_1_start >= start && pair_1_end <= end));
-                }
+            let pairs = id.split(',').collect::<Vec<&str>>();
+            if pairs.len() < 2 {
+                return 0;
             }
+            let (pair_1_start, pair_1_end) = get_pair_start_and_end(pairs[0]);
+            let (pair_2_start, pair_2_end) = get_pair_start_and_end(&pairs[1]);
+            let mut is_overlap = (pair_1_start <= pair_2_start && pair_1_end >= pair_2_end)
+                || (pair_1_start >= pair_2_start && pair_1_end <= pair_2_end);
 
             match is_overlap {
                 true => 1,
