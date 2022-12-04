@@ -5,6 +5,7 @@ use std::path::Path;
 mod day_1;
 mod day_2;
 mod day_3;
+mod day_4;
 
 fn main() {
     println!("Day 1");
@@ -20,6 +21,10 @@ fn main() {
     println!("Day 3");
     day_3::get_first_solution();
     day_3::get_second_solution();
+    println!("--------------------------------------");
+
+    println!("Day 4");
+    day_4::get_first_solution();
     println!("--------------------------------------");
 }
 
