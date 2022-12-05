@@ -31,6 +31,7 @@ fn main() {
 
     println!("Day 5");
     day_5::get_first_solution();
+    day_5::get_second_solution();
     println!("--------------------------------------");
 }
 
