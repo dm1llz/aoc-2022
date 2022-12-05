@@ -1,8 +1,7 @@
-use crate::read_file;
 use std::collections::HashSet;
 
 pub fn get_first_solution() {
-    let items = read_file("src/input/day3.txt");
+    let items = crate::read_file("src/input/day3.txt");
 
     let total: usize = items
         .split('\n')

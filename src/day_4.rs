@@ -1,8 +1,7 @@
-use crate::read_file;
 use std::collections::HashSet;
 
 pub fn get_first_solution() {
-    let ids = read_file("src/input/day4.txt");
+    let ids = crate::read_file("src/input/day4.txt");
 
     let overlaps: usize = ids
         .split('\n')
