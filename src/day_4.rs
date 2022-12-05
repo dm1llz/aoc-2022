@@ -25,7 +25,7 @@ pub fn get_first_solution() {
 }
 
 pub fn get_second_solution() {
-    let ids = read_file("src/input/day4.txt");
+    let ids = crate::read_file("src/input/day4.txt");
 
     let overlaps: usize = ids
         .split('\n')

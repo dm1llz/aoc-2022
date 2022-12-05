@@ -19,7 +19,7 @@ pub fn get_first_solution() {
 }
 
 pub fn get_second_solution() {
-    let items = read_file("src/input/day3.txt");
+    let items = crate::read_file("src/input/day3.txt");
 
     let total: usize = items
         .split('\n')
