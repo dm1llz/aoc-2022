@@ -7,10 +7,10 @@ enum ArrangeType {
 pub fn get_first_solution() {
     let input = crate::read_file("src/input/day5.txt");
 
-    let mut stacks = get_stacks(input.split('\n').take(8).collect());
+    let mut stacks = get_stacks(input.lines().take(8).collect());
     arrange_stacks(
         &mut stacks,
-        input.split('\n').skip(10).collect(),
+        input.lines().skip(10).collect(),
         ArrangeType::Single,
     );
 
@@ -20,10 +20,10 @@ pub fn get_first_solution() {
 pub fn get_second_solution() {
     let input = crate::read_file("src/input/day5.txt");
 
-    let mut stacks = get_stacks(input.split('\n').take(8).collect());
+    let mut stacks = get_stacks(input.lines().take(8).collect());
     arrange_stacks(
         &mut stacks,
-        input.split('\n').skip(10).collect(),
+        input.lines().skip(10).collect(),
         ArrangeType::Group,
     );
 

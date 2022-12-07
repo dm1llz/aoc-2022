@@ -1,11 +1,11 @@
 pub fn get_first_solution() {
-    let buffer = crate::read_file("src/input/day_6.txt");
+    let buffer = crate::read_file("src/input/day6.txt");
 
     println!("First start signal index: {}", get_signal_start(&buffer, 4));
 }
 
 pub fn get_second_solution() {
-    let buffer = crate::read_file("src/input/day_6.txt");
+    let buffer = crate::read_file("src/input/day6.txt");
 
     println!("First start of message signal index: {}", get_signal_start(&buffer, 14));
 }

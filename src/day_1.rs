@@ -18,7 +18,7 @@ fn get_calories_as_vec(calories: &str) -> Vec<usize> {
     let mut current_calories = 0;
     let mut calories_as_usize_vec = Vec::new();
 
-    for cal in calories.split('\n') {
+    for cal in calories.lines() {
         if cal.is_empty() {
             calories_as_usize_vec.push(current_calories);
             current_calories = 0;

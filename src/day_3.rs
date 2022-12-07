@@ -4,7 +4,7 @@ pub fn get_first_solution() {
     let items = crate::read_file("src/input/day3.txt");
 
     let total: usize = items
-        .split('\n')
+        .lines()
         .map(|i| {
             let middle = i.len() / 2;
 
@@ -22,7 +22,7 @@ pub fn get_second_solution() {
     let items = crate::read_file("src/input/day3.txt");
 
     let total: usize = items
-        .split('\n')
+        .lines()
         .collect::<Vec<&str>>()
         .chunks(3)
         .map(|c| match get_common_char(c.to_vec()) {

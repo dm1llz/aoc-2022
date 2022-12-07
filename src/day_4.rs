@@ -4,7 +4,7 @@ pub fn get_first_solution() {
     let ids = crate::read_file("src/input/day4.txt");
 
     let overlaps: usize = ids
-        .split('\n')
+        .lines()
         .map(|id| {
             let (pair_1_range, pair_2_range) = get_ranges(id);
             if pair_1_range.0 | pair_1_range.1 | pair_2_range.0 | pair_2_range.1 == -1 {
@@ -28,7 +28,7 @@ pub fn get_second_solution() {
     let ids = crate::read_file("src/input/day4.txt");
 
     let overlaps: usize = ids
-        .split('\n')
+        .lines()
         .map(|id| {
             let (pair_1_range, pair_2_range) = get_ranges(id);
 
