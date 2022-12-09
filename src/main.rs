@@ -8,6 +8,7 @@ mod day_3;
 mod day_4;
 mod day_5;
 mod day_6;
+mod day_8;
 
 fn main() {
     println!("Day 1");
@@ -38,6 +39,11 @@ fn main() {
     println!("Day 6");
     day_6::get_first_solution();
     day_6::get_second_solution();
+    println!("--------------------------------------");
+
+    println!("Day 8");
+    day_8::get_first_solution();
+    day_8::get_second_solution();
     println!("--------------------------------------");
 }
 

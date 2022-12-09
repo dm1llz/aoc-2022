@@ -7,7 +7,10 @@ pub fn get_first_solution() {
 pub fn get_second_solution() {
     let buffer = crate::read_file("src/input/day6.txt");
 
-    println!("First start of message signal index: {}", get_signal_start(&buffer, 14));
+    println!(
+        "First start of message signal index: {}",
+        get_signal_start(&buffer, 14)
+    );
 }
 
 fn get_signal_start(buffer: &str, length: usize) -> i32 {
